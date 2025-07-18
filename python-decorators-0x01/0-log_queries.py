@@ -4,12 +4,13 @@ import functools
 #### decorator to lof SQL queries
 
 """ YOUR CODE GOES HERE"""
-def log_queries(func):
-    def wrapper(*args, **kwargs):
-        query = args[0] if args else kwargs.get('query', '<no query provided>')
-        print(f"[LOG] Executing SQL Query: {query}")
-        return func(*args, **kwargs)
-    return wrapper
+def log_queries():
+    def decorator(func):
+        def wrapper(query, *args, **kwargs):
+            print(f"[LOG] Executing SQL Query: {query}")
+            return func(query, *args, **kwargs)
+        return wrapper
+    return decorator
 
 
 
