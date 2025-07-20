@@ -1,4 +1,4 @@
-"""#!/usr/bin/env python3"""
+#!/usr/bin/env python3
 """Unit and integration tests for GithubOrgClient."""
 
 import unittest
