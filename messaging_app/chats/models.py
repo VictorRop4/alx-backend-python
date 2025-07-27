@@ -5,6 +5,13 @@ from django.contrib.auth.models import AbstractUser
 # Extend AbstractUser
 class User(AbstractUser):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
+    # Explicitly include inherited fields
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=128)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=150)
+
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     
     ROLE_CHOICES = [

@@ -5,14 +5,14 @@ from django.urls import path, include
 from .views import ConversationViewSet, MessageViewSet
 
 # Initialize the router
-router = DefaultRouter()
+routers = DefaultRouter()
 
 # Register viewsets
-router.register(r'conversations', ConversationViewSet, basename='conversation')
-router.register(r'messages', MessageViewSet, basename='message')
+routers.register(r'conversations', ConversationViewSet, basename='conversation')
+routers.register(r'messages', MessageViewSet, basename='message')
 
 # Include the router-generated URL patterns
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', include(routers.urls)),
 ]
 

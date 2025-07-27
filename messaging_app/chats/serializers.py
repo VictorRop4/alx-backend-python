@@ -13,14 +13,16 @@ class UserSerializer(serializers.ModelSerializer):
 # --- Message Serializer ---
 class MessageSerializer(serializers.ModelSerializer):
     sender_name = serializers.SerializerMethodField()
+    message_preview = serializers.CharField(source='content', read_only=True)  # Explicit CharField
 
     class Meta:
         model = Message
-        fields = ['id', 'sender', 'sender_name', 'conversation', 'content', 'timestamp']
-        read_only_fields = ['sender_name', 'timestamp']
+        fields = ['id', 'sender', 'sender_name', 'conversation', 'content', 'timestamp', 'message_preview']
+        read_only_fields = ['sender_name', 'timestamp', 'message_preview']
 
     def get_sender_name(self, obj):
         return obj.sender.get_full_name() or obj.sender.username
+
 
 # --- Conversation Serializer with nested messages ---
 class ConversationSerializer(serializers.ModelSerializer):
