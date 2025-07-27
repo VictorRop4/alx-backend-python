@@ -1,24 +1,38 @@
 from rest_framework import serializers
-from .models import User, Conversation, Message
+from django.contrib.auth import get_user_model
+from .models import Conversation, Message
 
+User = get_user_model()
+
+# --- User Serializer ---
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['user_id', 'username', 'email', 'phone_number', 'role']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'phone_number', 'role']
 
-
+# --- Message Serializer ---
 class MessageSerializer(serializers.ModelSerializer):
-    sender = UserSerializer(read_only=True)
+    sender_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Message
-        fields = ['message_id', 'sender', 'message_body', 'sent_at', 'conversation']
+        fields = ['id', 'sender', 'sender_name', 'conversation', 'content', 'timestamp']
+        read_only_fields = ['sender_name', 'timestamp']
 
+    def get_sender_name(self, obj):
+        return obj.sender.get_full_name() or obj.sender.username
 
+# --- Conversation Serializer with nested messages ---
 class ConversationSerializer(serializers.ModelSerializer):
     participants = UserSerializer(many=True, read_only=True)
     messages = MessageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Conversation
-        fields = ['conversation_id', 'participants', 'created_at', 'messages']
+        fields = ['id', 'conversation_id', 'participants', 'messages', 'created_at']
+
+    # Example validation (if needed)
+    def validate(self, attrs):
+        if not attrs.get('participants'):
+            raise serializers.ValidationError("Conversation must have at least one participant.")
+        return attrs
