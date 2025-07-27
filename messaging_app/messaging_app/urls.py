@@ -16,12 +16,13 @@ Including another URLconf
 """
 # messaging_app/urls.py
 
+# messaging_app/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    # This line adds the API endpoints for conversations and messages
     path('api/', include('chats.urls')),
+    path('api-auth/', include('rest_framework.urls')),  # This adds login/logout for browsable API
 ]
