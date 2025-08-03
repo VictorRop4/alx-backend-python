@@ -10,7 +10,18 @@ from django.db.models import Prefetch
 from .models import Message, User, Conversation
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from .serializers import MessageSerializer
 
+class MessageViewSet(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        # Automatically assign the sender as the currently authenticated user
+        serializer.save(sender=self.request.user)
 
 @login_required
 def delete_user(request):
@@ -73,3 +84,10 @@ def conversation_messages_view(request, conversation_id):
         'conversation': conversation,
         'messages': messages,
     })
+
+class UnreadMessageViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = MessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Message.unread.for_user(self.request.user).only('id', 'content', 'timestamp')

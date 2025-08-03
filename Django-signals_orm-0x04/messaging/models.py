@@ -9,6 +9,14 @@ class Message(models.Model):
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     edited = models.BooleanField(default=False)
+    edited_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='edited_messages'
+    )
+
     parent_message = models.ForeignKey(
         'self',
         null=True,
@@ -23,6 +31,13 @@ class Message(models.Model):
     unread = UnreadMessagesManager()
     def __str__(self):
         return f"From {self.sender.username} to {self.receiver.username} at {self.timestamp}"
+
+
+class UnreadMessageManager(models.Manager):
+    def unread_for_user(self, user):
+        return self.get_queryset().filter(recipient=user, read=False)
+
+
 
 class MessageHistory(models.Model):
     message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name='history')
