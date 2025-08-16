@@ -1,0 +1,24 @@
+#!/bin/bash
+# kurbeScript - Simple helper to start and verify a local Kubernetes cluster with Minikube
+
+set -e  # Exit immediately if a command exits with a non-zero status
+
+# Step 1: Ensure Minikube is installed
+if ! command -v minikube &> /dev/null
+then
+    echo "❌ Minikube not found. Please install it first: https://minikube.sigs.k8s.io/docs/start/"
+    exit 1
+fi
+
+# Step 2: Start Minikube with Docker driver (preferred on Ubuntu)
+echo "🚀 Starting Minikube cluster..."
+minikube start --driver=docker
+
+# Step 3: Verify cluster info
+echo "✅ Verifying Kubernetes cluster info..."
+kubectl cluster-info
+
+# Step 4: Get all pods across all namespaces
+echo "📋 Retrieving available pods..."
+kubectl get pods -A
+
