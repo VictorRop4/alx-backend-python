@@ -1,0 +1,29 @@
+#!/bin/bash
+# Script: kubctl-0x01
+# Objective: Scale Django app in Kubernetes, verify pods, perform load testing, and monitor resources.
+
+# Variables (update deployment_name and service_url accordingly)
+DEPLOYMENT_NAME="messaging_app"
+NAMESPACE="default"
+SERVICE_URL="http://127.0.0.1:8000"   # Change to your Django service endpoint
+
+echo "🚀 Scaling Django app to 3 replicas..."
+kubectl scale deployment "$DEPLOYMENT_NAME" --replicas=3 -n "$NAMESPACE"
+
+echo "⏳ Waiting for pods to be ready..."
+kubectl rollout status deployment "$DEPLOYMENT_NAME" -n "$NAMESPACE"
+
+echo "✅ Verifying running pods..."
+kubectl get pods -n "$NAMESPACE" -o wide
+
+echo "🔍 Checking resource usage..."
+kubectl top pods -n "$NAMESPACE"
+
+echo "⚡ Running load test with wrk (10s, 12 threads, 400 connections)..."
+wrk -t12 -c400 -d10s "$SERVICE_URL"
+
+echo "📊 Final resource usage after load test:"
+kubectl top pods -n "$NAMESPACE"
+
+echo "🎯 Task Completed!"
+
