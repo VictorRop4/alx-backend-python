@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+    
+    tools {
+        // ShiningPanda provides python installations if configured
+        // Alternatively, install python inside Jenkins container
+        python 'Python3'
+    }
+
+    environment {
+        // Adjust based on your virtual environment setup
+        VENV = "${WORKSPACE}/venv"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', 
+                    url: 'https://github.com/your-username/messaging-app.git',
+                    credentialsId: 'github-creds'
+            }
+        }
+
+        stage('Setup Python Environment') {
+            steps {
+                sh """
+                python3 -m venv ${VENV}
+                . ${VENV}/bin/activate
+                pip install --upgrade pip
+                pip install -r requirements.txt
+                """
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh """
+                . ${VENV}/bin/activate
+                pytest --junitxml=report.xml
+                """
+            }
+            post {
+                always {
+                    junit 'report.xml'
+                }
+            }
+        }
+    }
+
+    triggers {
+        // pipeline is manually triggered; no SCM polling here
+    }
+}
