@@ -1,22 +1,16 @@
 pipeline {
     agent any
-    
-    tools {
-        // ShiningPanda provides python installations if configured
-        // Alternatively, install python inside Jenkins container
-        python 'Python3'
-    }
 
     environment {
-        // Adjust based on your virtual environment setup
         VENV = "${WORKSPACE}/venv"
+        DOCKER_IMAGE = "victorrop4/messaging-app"  // change to your Docker Hub repo
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', 
-                    url: 'https://github.com/your-username/messaging-app.git',
+                git branch: 'main',
+                    url: 'https://github.com/VictorRop4/alx-backend-python.git',
                     credentialsId: 'github-creds'
             }
         }
@@ -45,9 +39,24 @@ pipeline {
                 }
             }
         }
-    }
 
-    triggers {
-        // pipeline is manually triggered; no SCM polling here
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh "docker build -t ${DOCKER_IMAGE}:latest ."
+                }
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh """
+                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                    docker push ${DOCKER_IMAGE}:latest
+                    """
+                }
+            }
+        }
     }
 }
