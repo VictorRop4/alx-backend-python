@@ -21,7 +21,7 @@ async def async_fetch_older_users(db_name="example.db"):
                 print(row)
             return rows
 
-# Run both queries concurrently
+# Main coroutine that runs both concurrently
 async def fetch_concurrently():
     results = await asyncio.gather(
         async_fetch_users(),
@@ -29,6 +29,6 @@ async def fetch_concurrently():
     )
     return results
 
-# Entry point
+# Run the event loop
 if __name__ == "__main__":
     asyncio.run(fetch_concurrently())
