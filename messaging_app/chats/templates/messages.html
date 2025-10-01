@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversation</title>
+</head>
+<body>
+    <h1>Conversation {{ conversation.conversation_id }}</h1>
+
+    <ul>
+        {% for msg in messages %}
+            <li><b>{{ msg.sender_id.username }}</b>: {{ msg.message_body }} ({{ msg.sent_at }})</li>
+        {% empty %}
+            <li>No messages yet.</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="message_body" placeholder="Type your message..."></textarea><br>
+        <button type="submit">Send</button>
+    </form>
+
+    <p><a href="{% url 'conversation-list' %}">← Back to Conversations</a></p>
+</body>
+</html>

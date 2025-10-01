@@ -1,61 +1,69 @@
-from rest_framework import viewsets, status, filters
+from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.exceptions import PermissionDenied
-from .models import User, Conversation, Message
+from rest_framework.decorators import action
+from rest_framework import permissions
+
+from .models import Conversation, Message, User
 from .serializers import ConversationSerializer, MessageSerializer
-from .permissions import IsParticipantOrSender
+from .permissions import IsParticipantOfConversation
+
 
 class ConversationViewSet(viewsets.ModelViewSet):
     serializer_class = ConversationSerializer
-    permission_classes = [IsAuthenticated, IsParticipantOrSender]
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['participants__user_id']
+    permission_classes = [IsParticipantOfConversation]
 
     def get_queryset(self):
-        # Return only conversations the user participates in
+        # List and lookup only conversations the user participates in
         return Conversation.objects.filter(participants=self.request.user)
 
     def create(self, request, *args, **kwargs):
-        participant_ids = request.data.get('participants', [])
-        if not participant_ids or request.user.user_id not in participant_ids:
-            participant_ids.append(str(request.user.user_id))
+        participants_ids = request.data.get("participants", [])
+        if not participants_ids:
+            return Response({"error": "Participants are required"},
+                            status=status.HTTP_400_BAD_REQUEST)
 
-        participants = User.objects.filter(user_id__in=participant_ids)
+        # Fetch User instances to avoid invalid IDs and to ensure integrity
+        participants = User.objects.filter(id__in=participants_ids)
+        if not participants.exists():
+            return Response({"error": "No valid participants found"},
+                            status=status.HTTP_400_BAD_REQUEST)
+
         conversation = Conversation.objects.create()
-        conversation.participants.set(participants)
+        # ensure creator is included
+        conversation.participants.add(request.user)
+        conversation.participants.add(*participants)
+
         serializer = self.get_serializer(conversation)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(detail=True, methods=["post"])
+    def send_message(self, request, pk=None):
+        conversation = self.get_object()
+        # object permission already verified, but re-check for clarity
+        if request.user not in conversation.participants.all():
+            return Response({"error": "Forbidden"}, status=status.HTTP_403_FORBIDDEN)
+
+        body = request.data.get("message_body")
+        if not body:
+            return Response({"error": "Message body is required"},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        message = Message.objects.create(
+            sender=request.user,
+            conversation=conversation,
+            message_body=body
+        )
+        return Response(MessageSerializer(message).data, status=status.HTTP_201_CREATED)
 
 
 class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
-    permission_classes = [IsAuthenticated, IsParticipantOrSender]
-    filter_backends = [filters.OrderingFilter]
-    ordering_fields = ['timestamp']
+    permission_classes = [IsParticipantOfConversation]
 
     def get_queryset(self):
-        # Return only messages where the user is a participant in the conversation
+        # Only messages whose conversation includes the user
         return Message.objects.filter(conversation__participants=self.request.user)
 
-    def create(self, request, *args, **kwargs):
-        sender_id = request.data.get('sender')
-        conversation_id = request.data.get('conversation')
-        content = request.data.get('content')
-
-        try:
-            sender = User.objects.get(user_id=sender_id)
-            conversation = Conversation.objects.get(conversation_id=conversation_id)
-        except (User.DoesNotExist, Conversation.DoesNotExist):
-            return Response({'error': 'Invalid sender or conversation ID'}, status=status.HTTP_400_BAD_REQUEST)
-
-        if request.user != sender or request.user not in conversation.participants.all():
-            raise PermissionDenied("You do not have permission to send messages in this conversation.")
-
-        message = Message.objects.create(
-            sender=sender,
-            conversation=conversation,
-            content=content
-        )
-        serializer = self.get_serializer(message)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def perform_create(self, serializer):
+        # Save the authenticated user as the sender
+        serializer.save(sender=self.request.user)
