@@ -1,22 +1,38 @@
 from rest_framework import serializers
-from .models import User, Message, Conversation
+from .models import Conversation, Message
+from django.contrib.auth import get_user_model
 
-class  UserSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ['user_id', 'phone_number', 'role', 'email','created_at']
+User = get_user_model()
 
 class MessageSerializer(serializers.ModelSerializer):
+    message_body = serializers.CharField(max_length=500)
+    sender_username = serializers.SerializerMethodField()
 
     class Meta:
         model = Message
-        fields = ['message_id', 'sender_id', 'message_body','sent_at']
+        fields = ['message_id', 'sender_id', 'sender_username', 'message_body', 'sent_at', 'conversation']
+
+    def get_sender_username(self, obj):
+        return obj.sender_id.username
+
+    def validate_message_body(self, value):
+        if len(value.strip()) == 0:
+            raise serializers.ValidationError("Message body cannot be empty.")
+        return value
+
 
 class ConversationSerializer(serializers.ModelSerializer):
-    participants = UserSerializer(many=True, read_only=True)
+    participants = serializers.PrimaryKeyRelatedField(
+        many=True,
+        queryset=User.objects.all()
+    )
+    participant_names = serializers.SerializerMethodField()
+    # ✅ Nested relationship for messages
     messages = MessageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Conversation
-        fields = ['conversation_id', 'created_at', 'participants','messages']
+        fields = ['conversation_id', 'created_at', 'participants', 'participant_names', 'messages']
+
+    def get_participant_names(self, obj):
+        return [user.username for user in obj.participants.all()]
