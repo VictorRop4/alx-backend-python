@@ -9,10 +9,13 @@ class UserRole(models.TextChoices):
 
 class User(AbstractUser):
     user_id = models.UUIDField(primary_key=True,default=uuid.uuid4, editable= False)
+    first_name = models.CharField(max_length=50,null=False,blank=False)
+    last_name = models.CharField(max_length=50,null=False,blank=False)
     phone_number = models.CharField(max_length=100, null=True, blank=True)
     role = models.CharField(max_length=10, choices=UserRole.choices, default=UserRole.GUEST)
     created_at = models.DateTimeField(auto_now_add=True)
     email = models.EmailField(unique=True, null=False)
+    password = models.CharField(max_length=255, null=False,blank=False)
 
     def __str__(self):
         return f"{self.username} ({self.role})"
