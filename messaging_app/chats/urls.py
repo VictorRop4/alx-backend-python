@@ -1,11 +1,12 @@
 from django.urls import path, include
 from .views import ConversationViewSet, MessageViewSet
+from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from rest_framework_nested.routers import DefaultRouter, NestedDefaultRouter
+from rest_framework_nested.routers import  NestedDefaultRouter
 
 
 # Create a router instance
-router = DefaultRouter()
+router = routers.DefaultRouter()
 router.register(r'conversations', ConversationViewSet, basename='conversation')
 
 # Nested router for messages under conversations
