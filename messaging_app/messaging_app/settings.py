@@ -142,11 +142,11 @@ REST_FRAMEWORK = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20,
-
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'PAGE_SIZE': 20,  # ✅ 20 messages per page
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
 }
-
 SIMPLE_JWT = {
     'USER_ID_FIELD': 'user_id',  # matches your PK
     'USER_ID_CLAIM': 'user_id',  # how it appears in the token payload
