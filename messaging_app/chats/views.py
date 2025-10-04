@@ -7,6 +7,7 @@ from .models import Conversation, Message
 from .permissions import IsParticipantOfConversation
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from .pagination import MessagePagination
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -36,6 +37,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
 class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
     permission_classes = [IsAuthenticated, IsParticipantOfConversation]
+    pagination_class = MessagePagination
 
     def get_queryset(self):
         return Message.objects.filter(conversation_id=self.request.user)
