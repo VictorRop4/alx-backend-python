@@ -1,7 +1,6 @@
 from django.urls import path, include
 from .views import ConversationViewSet, MessageViewSet
 from rest_framework import routers
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_nested.routers import  NestedDefaultRouter
 
 
@@ -17,6 +16,5 @@ conversations_router.register(r'messages', MessageViewSet, basename='conversatio
 urlpatterns = [
     path('', include(router.urls)),
     path('', include(conversations_router.urls)),
-    path('token/', TokenObtainPairView.as_view(), name = 'token_obatain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name = 'token_refres'),
+    path('auth/', include('chats.auth')), 
 ]
