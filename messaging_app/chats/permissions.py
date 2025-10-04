@@ -5,7 +5,7 @@ class IsParticipantOfConversation(permissions.BasePermission):
     Only participants can access a conversation or its messages.
     """
     def has_object_permission(self, request, view):
-            return bool(request.user and request.user.Isauthenticated)
+            return bool(request.user and request.user.is_authenticated)
     
     def has_object_permission(self, request, view, obj):
         # Step 2: Allow access only if the user is a participant
