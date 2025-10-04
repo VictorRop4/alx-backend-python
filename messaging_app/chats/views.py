@@ -5,7 +5,8 @@ from .serializers import ConversationSerializer, MessageSerializer,UserSerialize
 from rest_framework import viewsets, permissions
 from .models import Conversation, Message
 from .permissions import IsParticipantOfConversation
-from rest_framework import generics, permissions
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -27,22 +28,22 @@ class MeView(generics.RetrieveUpdateAPIView):
 
 class ConversationViewSet(viewsets.ModelViewSet):
     serializer_class = ConversationSerializer
-    permission_classes = [IsParticipantOfConversation]
+    permission_classes = [IsAuthenticated,IsParticipantOfConversation]
 
     def get_queryset(self):
         return Conversation.objects.filter(participants=self.request.user)
 
 class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
-    permission_classes = [IsParticipantOfConversation]
+    permission_classes = [IsAuthenticated, IsParticipantOfConversation]
 
     def get_queryset(self):
-        return Message.objects.filter(conversation__participants=self.request.user)
+        return Message.objects.filter(conversation_id=self.request.user)
 
     def perform_create(self, serializer):
         conversation = serializer.validated_data["conversation"]
         if not conversation.participants.filter(id=self.request.user.id).exists():
-            raise permissions.PermissionDenied("You are not a participant in this conversation.")
+            raise permissions.PermissionDenied("HTTP_403_FORBIDDEN")
         serializer.save(sender=self.request.user)
     
     
