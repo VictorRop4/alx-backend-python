@@ -1,6 +1,6 @@
 from rest_framework import permissions
 
-class IsConversationParticipant(permissions.BasePermission):
+class IsParticipantOfConversation(permissions.BasePermission):
     """
     Only participants can access a conversation or its messages.
     """
