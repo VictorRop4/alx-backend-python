@@ -4,7 +4,7 @@ from .models import Conversation, Message, User
 from .serializers import ConversationSerializer, MessageSerializer,UserSerializer
 from rest_framework import viewsets, permissions
 from .models import Conversation, Message
-from .permissions import IsConversationParticipant
+from .permissions import IsParticipantOfConversation
 from rest_framework import generics, permissions
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -24,7 +24,7 @@ class MeView(generics.RetrieveAPIView):
 
 class ConversationViewSet(viewsets.ModelViewSet):
     serializer_class = ConversationSerializer
-    permission_classes = [permissions.IsAuthenticated, IsConversationParticipant]
+    permission_classes = [permissions.IsAuthenticated, IsParticipantOfConversation]
 
     def get_queryset(self):
         return Conversation.objects.filter(participants=self.request.user)
@@ -35,7 +35,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
 class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
-    permission_classes = [permissions.IsAuthenticated, IsConversationParticipant]
+    permission_classes = [permissions.IsAuthenticated, IsParticipantOfConversation]
 
     def get_queryset(self):
         return Message.objects.filter(conversation__participants=self.request.user)
