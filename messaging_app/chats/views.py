@@ -9,6 +9,8 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .pagination import MessagePagination
 from django.contrib.auth import get_user_model
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import MessageFilter, ConversationFilter
 User = get_user_model()
 
 class RegisterView(generics.CreateAPIView):
@@ -30,6 +32,8 @@ class MeView(generics.RetrieveUpdateAPIView):
 class ConversationViewSet(viewsets.ModelViewSet):
     serializer_class = ConversationSerializer
     permission_classes = [IsAuthenticated,IsParticipantOfConversation]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = ConversationFilter
 
     def get_queryset(self):
         return Conversation.objects.filter(participants=self.request.user)
@@ -38,6 +42,8 @@ class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
     permission_classes = [IsAuthenticated, IsParticipantOfConversation]
     pagination_class = MessagePagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = MessageFilter
 
     def get_queryset(self):
         return Message.objects.filter(conversation_id=self.request.user)
