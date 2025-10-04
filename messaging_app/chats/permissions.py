@@ -9,11 +9,20 @@ class IsParticipantOfConversation(permissions.BasePermission):
     
     def has_object_permission(self, request, view, obj):
         # Step 2: Allow access only if the user is a participant
-        if hasattr(obj, "participants"):  # Conversation instance
-            return obj.participants.filter(id=request.user.id).exists()
+    
+        if hasattr(obj, "participants"):        # Conversation instance
+            conversation = obj
+        elif hasattr(obj, "conversation"):      # Message instance
+            conversation = obj.conversation
+        else:
+            return False
 
-        if hasattr(obj, "conversation"):  # Message instance
-            return obj.conversation.participants.filter(id=request.user.id).exists()
+        # Allow only if the user is a participant
+        is_participant = conversation.participants.filter(id=request.user.id).exists()
 
+        # Apply restriction to view, send, update, and delete operations
+        if request.method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
+            return is_participant
+
+        # Deny all other unsafe or unsupported methods
         return False
-

@@ -11,36 +11,39 @@ User = get_user_model()
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
-    permission_classes = [permissions.AllowAny]
     serializer_class = UserSerializer
+    permission_classes = []
 
-class MeView(generics.RetrieveAPIView):
+class MeView(generics.RetrieveUpdateAPIView):
+    """
+    Allows authenticated users to view or update their own profile.
+    """
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
+        # Return the currently authenticated user
         return self.request.user
-
 
 class ConversationViewSet(viewsets.ModelViewSet):
     serializer_class = ConversationSerializer
-    permission_classes = [permissions.IsAuthenticated, IsParticipantOfConversation]
+    permission_classes = [IsParticipantOfConversation]
 
     def get_queryset(self):
         return Conversation.objects.filter(participants=self.request.user)
 
-    def perform_create(self, serializer):
-        conversation = serializer.save()
-        conversation.participants.add(self.request.user)
-
 class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
-    permission_classes = [permissions.IsAuthenticated, IsParticipantOfConversation]
+    permission_classes = [IsParticipantOfConversation]
 
     def get_queryset(self):
         return Message.objects.filter(conversation__participants=self.request.user)
 
     def perform_create(self, serializer):
-        serializer.save(sender_id=self.request.user)
-
+        conversation = serializer.validated_data["conversation"]
+        if not conversation.participants.filter(id=self.request.user.id).exists():
+            raise permissions.PermissionDenied("You are not a participant in this conversation.")
+        serializer.save(sender=self.request.user)
+    
+    
 
