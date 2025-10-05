@@ -131,3 +131,114 @@ django.core.exceptions.ImproperlyConfigured: Field name `id` is not valid for mo
 2025-10-05 16:56:05,585 - INFO - User: AnonymousUser - Path: /conversations/$ [name='conversation-list']/
 2025-10-05 16:56:05,597 - WARNING - Forbidden: /conversations/$ [name='conversation-list']/
 2025-10-05 16:56:05,599 - WARNING - "GET /conversations/$%20%5Bname%3D'conversation-list'%5D/ HTTP/1.1" 403 5573
+2025-10-05 17:12:34,942 - INFO - Watching for file changes with StatReloader
+2025-10-05 17:12:45,160 - INFO - User: AnonymousUser - Path: /
+2025-10-05 17:12:45,188 - INFO - "GET / HTTP/1.1" 200 5303
+2025-10-05 17:12:54,752 - INFO - User: AnonymousUser - Path: /swagger/
+2025-10-05 17:12:54,761 - INFO - "GET /swagger/ HTTP/1.1" 200 2216
+2025-10-05 17:12:54,984 - INFO - User: AnonymousUser - Path: /swagger/
+2025-10-05 17:12:55,095 - ERROR - Internal Server Error: /swagger/
+Traceback (most recent call last):
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/views.py", line 129, in get
+    schema = generator.get_schema(request, self.public)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/generators.py", line 337, in get_schema
+    paths, prefix = self.get_paths(endpoints, components, request, public)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/generators.py", line 561, in get_paths
+    operation = self.get_operation(
+                ^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/generators.py", line 609, in get_operation
+    operation = view_inspector.get_operation(operation_keys)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/view.py", line 58, in get_operation
+    responses = self.get_responses()
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/view.py", line 224, in get_responses
+    response_serializers = self.get_response_serializers()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/view.py", line 289, in get_response_serializers
+    responses = self.get_default_responses()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/view.py", line 257, in get_default_responses
+    default_schema = self.serializer_to_schema(default_schema) or ""
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/base.py", line 551, in serializer_to_schema
+    return self.probe_inspectors(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/base.py", line 137, in probe_inspectors
+    result = method(obj, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/field.py", line 55, in get_schema
+    return self.probe_field_inspectors(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/base.py", line 277, in probe_field_inspectors
+    return self.probe_inspectors(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/base.py", line 137, in probe_inspectors
+    result = method(obj, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/field.py", line 154, in field_to_swagger_object
+    actual_schema = definitions.setdefault(ref_name, make_schema_definition)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/openapi.py", line 822, in setdefault
+    ret = maker()
+          ^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/field.py", line 125, in make_schema_definition
+    for property_name, child in serializer.fields.items():
+                                ^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1105, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1251, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1369, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `id` is not valid for model `User` in `chats.serializers.UserSerializer`.
+2025-10-05 17:12:55,099 - ERROR - "GET /swagger/?format=openapi HTTP/1.1" 500 222898
+2025-10-05 17:15:05,795 - INFO - /home/rop/Desktop/alx-backend-python/Django-Middleware-0x03/chats/serializers.py changed, reloading.
+2025-10-05 17:15:06,404 - INFO - Watching for file changes with StatReloader
+2025-10-05 17:15:20,023 - INFO - User: AnonymousUser - Path: /swagger/
+2025-10-05 17:15:20,039 - INFO - "GET /swagger/ HTTP/1.1" 200 2216
+2025-10-05 17:15:20,213 - INFO - User: AnonymousUser - Path: /swagger/
+2025-10-05 17:15:20,288 - INFO - "GET /swagger/?format=openapi HTTP/1.1" 200 9891
+2025-10-05 17:16:05,039 - INFO - User: AnonymousUser - Path: /admin/login/
+2025-10-05 17:16:05,143 - INFO - "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4173
+2025-10-05 17:16:05,247 - INFO - "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+2025-10-05 17:16:05,248 - INFO - "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+2025-10-05 17:16:05,274 - INFO - "GET /static/admin/css/login.css HTTP/1.1" 200 951
+2025-10-05 17:16:05,275 - INFO - "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+2025-10-05 17:16:05,276 - INFO - "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+2025-10-05 17:16:05,284 - INFO - "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+2025-10-05 17:16:05,284 - INFO - "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+2025-10-05 17:16:05,303 - INFO - User: AnonymousUser - Path: /favicon.ico
+2025-10-05 17:16:05,314 - WARNING - Not Found: /favicon.ico
