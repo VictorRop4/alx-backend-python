@@ -53,10 +53,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     'chats.middleware.RequestLoggingMiddleware',
+    'chats.middleware.RequestLoggingMiddleware',
+
+    # 2. Restricts access to the messaging app outside 6 PM–9 PM
     'chats.middleware.RestrictAccessByTimeMiddleware',
+
+    # 3. Limits POST messages per IP (5 per minute)
     'chats.middleware.OffensiveLanguageMiddleware',
-    'chats.middleware.RolePermissionMiddleware',
+
+    # 4. Enforces role-based access (admin/moderator only)
+    'chats.middleware.RolepermissionMiddleware',
+
 ]
 
 ROOT_URLCONF = 'messaging_app.urls'
@@ -154,4 +161,40 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'USER_ID_FIELD': 'user_id',  # matches your PK
     'USER_ID_CLAIM': 'user_id',  # how it appears in the token payload
+}
+# Logging configuration
+import os
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s - %(levelname)s - %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'requests.log'),
+            'formatter': 'standard',
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'chats': {  # replace with your app name
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
 }

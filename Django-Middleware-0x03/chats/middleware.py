@@ -92,7 +92,7 @@ class OffensiveLanguageMiddleware:
 
 
 # -------------------- 4. ROLE-BASED PERMISSION MIDDLEWARE --------------------
-class RolePermissionMiddleware:
+class RolepermissionMiddleware:
     """
     Allows only users with roles 'admin' or 'moderator' to access restricted paths.
     """

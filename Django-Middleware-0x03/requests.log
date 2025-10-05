@@ -2,3 +2,22 @@
 2025-10-05 16:08:14,785 - WARNING - Access blocked due to time restriction. Path: /
 2025-10-05 16:08:15,148 - INFO - User: AnonymousUser - Path: /favicon.ico
 2025-10-05 16:08:15,148 - WARNING - Access blocked due to time restriction. Path: /favicon.ico
+2025-10-05 16:17:07,172 - INFO - Watching for file changes with StatReloader
+2025-10-05 16:17:19,980 - INFO - User: AnonymousUser - Path: /
+2025-10-05 16:17:19,980 - WARNING - Access blocked due to time restriction. Path: /
+2025-10-05 16:17:19,981 - WARNING - Forbidden: /
+2025-10-05 16:17:19,982 - WARNING - "GET / HTTP/1.1" 403 67
+2025-10-05 16:17:20,023 - INFO - User: AnonymousUser - Path: /favicon.ico
+2025-10-05 16:17:20,023 - WARNING - Access blocked due to time restriction. Path: /favicon.ico
+2025-10-05 16:17:20,024 - WARNING - Forbidden: /favicon.ico
+2025-10-05 16:17:21,003 - INFO - User: AnonymousUser - Path: /
+2025-10-05 16:17:21,004 - WARNING - Access blocked due to time restriction. Path: /
+2025-10-05 16:17:21,004 - WARNING - Forbidden: /
+2025-10-05 16:17:21,005 - WARNING - "GET / HTTP/1.1" 403 67
+2025-10-05 16:17:21,038 - INFO - User: AnonymousUser - Path: /favicon.ico
+2025-10-05 16:17:21,038 - WARNING - Access blocked due to time restriction. Path: /favicon.ico
+2025-10-05 16:17:21,038 - WARNING - Forbidden: /favicon.ico
+2025-10-05 16:17:24,087 - INFO - User: AnonymousUser - Path: /
+2025-10-05 16:17:24,087 - WARNING - Access blocked due to time restriction. Path: /
+2025-10-05 16:17:24,088 - WARNING - Forbidden: /
+2025-10-05 16:17:24,089 - WARNING - "GET / HTTP/1.1" 403 67
