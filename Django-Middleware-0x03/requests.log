@@ -1,0 +1,4 @@
+2025-10-05 16:08:14,785 - INFO - User: AnonymousUser - Path: /
+2025-10-05 16:08:14,785 - WARNING - Access blocked due to time restriction. Path: /
+2025-10-05 16:08:15,148 - INFO - User: AnonymousUser - Path: /favicon.ico
+2025-10-05 16:08:15,148 - WARNING - Access blocked due to time restriction. Path: /favicon.ico

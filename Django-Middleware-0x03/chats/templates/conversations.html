@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversations</title>
+</head>
+<body>
+    <h1>Conversations</h1>
+    <ul>
+        {% for convo in conversations %}
+            <li>
+                <a href="{% url 'message-list' convo.conversation_id %}">
+                    Conversation {{ convo.conversation_id }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No conversations yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
