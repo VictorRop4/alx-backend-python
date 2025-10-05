@@ -67,7 +67,7 @@ MIDDLEWARE = [
 
 ]
 
-ROOT_URLCONF = 'messaging_app.urls'
+ROOT_URLCONF = 'Django_Middleware_0x03.urls'
 
 TEMPLATES = [
     {
@@ -84,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'messaging_app.wsgi.application'
+WSGI_APPLICATION = 'Django_Middleware_0x03.wsgi.application'
 
 
 # Database
