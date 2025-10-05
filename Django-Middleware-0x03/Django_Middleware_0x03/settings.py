@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'chats',
     'django_filters',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,18 +53,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Custom Middleware
     'chats.middleware.RequestLoggingMiddleware',
-
-    # 2. Restricts access to the messaging app outside 6 PM–9 PM
     'chats.middleware.RestrictAccessByTimeMiddleware',
-
-    # 3. Limits POST messages per IP (5 per minute)
-    'chats.middleware.OffensiveLanguageMiddleware',
-
-    # 4. Enforces role-based access (admin/moderator only)
-    'chats.middleware.RolepermissionMiddleware',
-
+    'chats.middleware.MessageRateLimitMiddleware',
+    'chats.middleware.RolePermissionMiddleware',
 ]
+
 
 ROOT_URLCONF = 'Django_Middleware_0x03.urls'
 
