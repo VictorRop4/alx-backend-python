@@ -42,10 +42,10 @@ class RestrictAccessByTimeMiddleware:
 
     def __call__(self, request):
         current_hour = datetime.now().hour
-        if current_hour < 18 or current_hour >= 21:
+        if current_hour < 14 or current_hour >= 23:
             logger.warning(f"Access blocked due to time restriction. Path: {request.path}")
             return HttpResponseForbidden(
-                "<h1>403 Forbidden</h1><p>Access restricted outside 6 PM–9 PM.</p>"
+                "<h1>403 Forbidden</h1><p>Access restricted outside 9 PM–11 PM.</p>"
             )
         return self.get_response(request)
 

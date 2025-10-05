@@ -1,23 +1,133 @@
-2025-10-05 16:08:14,785 - INFO - User: AnonymousUser - Path: /
-2025-10-05 16:08:14,785 - WARNING - Access blocked due to time restriction. Path: /
-2025-10-05 16:08:15,148 - INFO - User: AnonymousUser - Path: /favicon.ico
-2025-10-05 16:08:15,148 - WARNING - Access blocked due to time restriction. Path: /favicon.ico
-2025-10-05 16:17:07,172 - INFO - Watching for file changes with StatReloader
-2025-10-05 16:17:19,980 - INFO - User: AnonymousUser - Path: /
-2025-10-05 16:17:19,980 - WARNING - Access blocked due to time restriction. Path: /
-2025-10-05 16:17:19,981 - WARNING - Forbidden: /
-2025-10-05 16:17:19,982 - WARNING - "GET / HTTP/1.1" 403 67
-2025-10-05 16:17:20,023 - INFO - User: AnonymousUser - Path: /favicon.ico
-2025-10-05 16:17:20,023 - WARNING - Access blocked due to time restriction. Path: /favicon.ico
-2025-10-05 16:17:20,024 - WARNING - Forbidden: /favicon.ico
-2025-10-05 16:17:21,003 - INFO - User: AnonymousUser - Path: /
-2025-10-05 16:17:21,004 - WARNING - Access blocked due to time restriction. Path: /
-2025-10-05 16:17:21,004 - WARNING - Forbidden: /
-2025-10-05 16:17:21,005 - WARNING - "GET / HTTP/1.1" 403 67
-2025-10-05 16:17:21,038 - INFO - User: AnonymousUser - Path: /favicon.ico
-2025-10-05 16:17:21,038 - WARNING - Access blocked due to time restriction. Path: /favicon.ico
-2025-10-05 16:17:21,038 - WARNING - Forbidden: /favicon.ico
-2025-10-05 16:17:24,087 - INFO - User: AnonymousUser - Path: /
-2025-10-05 16:17:24,087 - WARNING - Access blocked due to time restriction. Path: /
-2025-10-05 16:17:24,088 - WARNING - Forbidden: /
-2025-10-05 16:17:24,089 - WARNING - "GET / HTTP/1.1" 403 67
+2025-10-05 16:47:36,117 - INFO - Watching for file changes with StatReloader
+2025-10-05 16:47:51,118 - INFO - Watching for file changes with StatReloader
+2025-10-05 16:48:40,864 - INFO - Watching for file changes with StatReloader
+2025-10-05 16:50:23,144 - INFO - Watching for file changes with StatReloader
+2025-10-05 16:50:30,706 - INFO - User: AnonymousUser - Path: /
+2025-10-05 16:50:30,706 - WARNING - Access blocked due to time restriction. Path: /
+2025-10-05 16:50:30,707 - WARNING - Forbidden: /
+2025-10-05 16:50:30,708 - WARNING - "GET / HTTP/1.1" 403 68
+2025-10-05 16:50:33,498 - INFO - User: AnonymousUser - Path: /
+2025-10-05 16:50:33,499 - WARNING - Access blocked due to time restriction. Path: /
+2025-10-05 16:50:33,499 - WARNING - Forbidden: /
+2025-10-05 16:50:33,501 - WARNING - "GET / HTTP/1.1" 403 68
+2025-10-05 16:50:34,320 - INFO - User: AnonymousUser - Path: /
+2025-10-05 16:50:34,320 - WARNING - Access blocked due to time restriction. Path: /
+2025-10-05 16:50:34,320 - WARNING - Forbidden: /
+2025-10-05 16:50:34,321 - WARNING - "GET / HTTP/1.1" 403 68
+2025-10-05 16:50:34,563 - INFO - User: AnonymousUser - Path: /
+2025-10-05 16:50:34,564 - WARNING - Access blocked due to time restriction. Path: /
+2025-10-05 16:50:34,564 - WARNING - Forbidden: /
+2025-10-05 16:50:34,565 - WARNING - "GET / HTTP/1.1" 403 68
+2025-10-05 16:54:39,410 - INFO - /home/rop/Desktop/alx-backend-python/Django-Middleware-0x03/chats/middleware.py changed, reloading.
+2025-10-05 16:54:40,026 - INFO - Watching for file changes with StatReloader
+2025-10-05 16:54:45,053 - INFO - User: AnonymousUser - Path: /
+2025-10-05 16:54:45,158 - INFO - "GET / HTTP/1.1" 200 5303
+2025-10-05 16:55:03,127 - INFO - User: AnonymousUser - Path: /swagger/
+2025-10-05 16:55:03,163 - INFO - "GET /swagger/ HTTP/1.1" 200 2216
+2025-10-05 16:55:03,292 - INFO - "GET /static/drf-yasg/style.css HTTP/1.1" 304 0
+2025-10-05 16:55:03,335 - INFO - "GET /static/drf-yasg/swagger-ui-dist/swagger-ui.css HTTP/1.1" 304 0
+2025-10-05 16:55:03,351 - INFO - "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js HTTP/1.1" 304 0
+2025-10-05 16:55:03,393 - INFO - "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js HTTP/1.1" 304 0
+2025-10-05 16:55:03,415 - INFO - "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 304 0
+2025-10-05 16:55:03,434 - INFO - "GET /static/drf-yasg/immutable.min.js HTTP/1.1" 304 0
+2025-10-05 16:55:03,435 - INFO - "GET /static/drf-yasg/swagger-ui-init.js HTTP/1.1" 304 0
+2025-10-05 16:55:03,760 - INFO - User: AnonymousUser - Path: /swagger/
+2025-10-05 16:55:04,217 - ERROR - Internal Server Error: /swagger/
+Traceback (most recent call last):
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/views.py", line 129, in get
+    schema = generator.get_schema(request, self.public)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/generators.py", line 337, in get_schema
+    paths, prefix = self.get_paths(endpoints, components, request, public)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/generators.py", line 561, in get_paths
+    operation = self.get_operation(
+                ^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/generators.py", line 609, in get_operation
+    operation = view_inspector.get_operation(operation_keys)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/view.py", line 58, in get_operation
+    responses = self.get_responses()
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/view.py", line 224, in get_responses
+    response_serializers = self.get_response_serializers()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/view.py", line 289, in get_response_serializers
+    responses = self.get_default_responses()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/view.py", line 257, in get_default_responses
+    default_schema = self.serializer_to_schema(default_schema) or ""
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/base.py", line 551, in serializer_to_schema
+    return self.probe_inspectors(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/base.py", line 137, in probe_inspectors
+    result = method(obj, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/field.py", line 55, in get_schema
+    return self.probe_field_inspectors(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/base.py", line 277, in probe_field_inspectors
+    return self.probe_inspectors(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/base.py", line 137, in probe_inspectors
+    result = method(obj, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/field.py", line 154, in field_to_swagger_object
+    actual_schema = definitions.setdefault(ref_name, make_schema_definition)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/openapi.py", line 822, in setdefault
+    ret = maker()
+          ^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/drf_yasg/inspectors/field.py", line 125, in make_schema_definition
+    for property_name, child in serializer.fields.items():
+                                ^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1105, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1251, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rop/Desktop/alx-backend-python/messaging_app/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1369, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `id` is not valid for model `User` in `chats.serializers.UserSerializer`.
+2025-10-05 16:55:04,225 - ERROR - "GET /swagger/?format=openapi HTTP/1.1" 500 222807
+2025-10-05 16:55:16,978 - INFO - User: AnonymousUser - Path: /categories/
+2025-10-05 16:55:16,987 - WARNING - Not Found: /categories/
+2025-10-05 16:55:16,988 - WARNING - "GET /categories/ HTTP/1.1" 404 7891
+2025-10-05 16:55:45,590 - INFO - User: AnonymousUser - Path: /conversation/
+2025-10-05 16:55:45,599 - WARNING - Not Found: /conversation/
+2025-10-05 16:55:45,599 - WARNING - "GET /conversation/ HTTP/1.1" 404 7897
+2025-10-05 16:56:05,530 - INFO - User: AnonymousUser - Path: /conversations/$ [name='conversation-list']
+2025-10-05 16:56:05,543 - INFO - "GET /conversations/$%20[name='conversation-list'] HTTP/1.1" 301 0
+2025-10-05 16:56:05,585 - INFO - User: AnonymousUser - Path: /conversations/$ [name='conversation-list']/
+2025-10-05 16:56:05,597 - WARNING - Forbidden: /conversations/$ [name='conversation-list']/
+2025-10-05 16:56:05,599 - WARNING - "GET /conversations/$%20%5Bname%3D'conversation-list'%5D/ HTTP/1.1" 403 5573
